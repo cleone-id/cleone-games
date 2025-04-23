@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cleone ID</title>
+  <meta name="description" content="CleoneID adalah komunitas daring Indonesia berbasis Discord yang memiliki fokus untuk menjadi tempat berteman, berkumpul, dan diskusi berbagai topik, terutama terkait hobi dan gaming.">
+  <meta name="keywords" content="online community, gaming community, technology enthusiasts, gaming, gaming enthusiasts, komunitas game Indonesia, komunitas game, komunitas online">
+  <meta property="og:title" content="Cleone ID">
+  <meta property="og:description" content="Join CleoneID untuk komunitas daring Indonesia berbasis Discord yang memiliki fokus untuk menjadi tempat berteman, berkumpul, dan diskusi berbagai topik, terutama terkait hobi dan gaming.">
+  <meta property="og:url" content="https://cleone.id">
+  <meta property="og:image" content="https://cleone.id/assets/image/logo.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CleoneID Online">
+  <link rel="canonical" href="https://cleone.id">
+  <link rel="icon" type="image/webp" href="https://cleone.id/assets/image/logo.webp">
+  <meta name="robots" content="index, follow">
+
+  <!-- Schema.org markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Cleone ID",
+      "url": "https://cleone.id",
+      "logo": "https://cleone.id/assets/image/logo.webp",
+      "sameAs": [
+        "https://discord.com/invite/bX3hemMD"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "-",
+        "contactType": "Admin",
+        "email": "mailto:id.cleone@gmail.com"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Indonesia",
+        "addressLocality": "Indonesia",
+        "addressRegion": "Indonesia",
+        "postalCode": "-",
+        "addressCountry": "ID"
+      },
+      "description": "Kami adalah komunitas daring Indonesia berbasis Discord yang memiliki fokus untuk menjadi tempat berteman, berkumpul, dan diskusi berbagai topik, terutama terkait hobi dan gaming.",
+      "foundingDate": "2021-06-14",
+      "founder": {
+        "@type": "Person",
+        "name": "Shelon"
+      },
+      "member": {
+        "@type": "OrganizationRole",
+        "member": {
+          "@type": "Person",
+          "name": "Mahaputera",
+          "url": "https://cleone.id",
+          "image": "https://cleone.id/assets/image/logo.webp",
+          "jobTitle": "Community Manager",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Gaming Community"
+          }
+        },
+        "roleName": "Community Manager"
+      }
+    }
+  </script>
+  <!-- CSS  -->
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+  <style>
+    /* Custom CSS for logo */
+    .brand-logo img {
+      max-height: 64px; /* Adjust this value as needed */
+      width: auto;
+      height: auto;
+    }
+    .slider.fullscreen ul.indicators {
+      bottom: 80px;
+    }
+    .page-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 900;
+      padding: 0px;
+      text-align: center;
+    }
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #000;
+    }
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
+    }
+
+    .card {
+      background-color: #2D2D2D;
+      color: #EAEAEA;
+    }
+
+    /* label color */
+    .input-field label {
+      color: #EAEAEA;
+    }
+    /* label focus color */
+    .input-field input[type=text]:focus + label {
+      color: #ffc400;
+    }
+    /* label underline focus color */
+    .input-field input[type=text]:focus {
+      border-bottom: 1px solid #ffc400;
+      box-shadow: 0 1px 0 0 #ffc400;
+    }
+    /* valid color */
+    .input-field input[type=text].valid {
+      border-bottom: 1px solid #ffc400;
+      box-shadow: 0 1px 0 0 #ffc400;
+    }
+    /* invalid color */
+    .input-field input[type=text].invalid {
+      border-bottom: 1px solid #ffc400;
+      box-shadow: 0 1px 0 0 #ffc400;
+    }
+    /* icon prefix focus color */
+    .input-field .prefix.active {
+      color: #ffc400;
+    }
+
+    .swal2-html-container {
+      padding: 0 0 0 0 !important;
+    }
+
+    .swal2-styled.swal2-cancel {
+      color: #000000;
+    }
+
+    .swal2-styled.swal2-confirm {
+      color: #000000;
+    }
+
+    .btn.waves-effect {
+      height: auto;
+      min-height: 20px;
+      line-height: 20px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  </style>
+</head>
+<body class="grey darken-3">
+<div class="preloader">
+  <div class="loading center">
+    <img src="assets/image/logo.gif" width="50%" alt="Pre-loader">
+  </div>
+</div>
+
+<nav class="grey darken-3 z-depth-5" role="navigation" style="z-index: 999; position: absolute;">
+  <div class="nav-wrapper container">
+    <a href="#!" class="brand-logo"><img src="assets/image/logo.webp" alt="Logo"></a>
+  </div>
+</nav>
+
+<div class="tap-target amber lighten-2" data-target="menu">
+  <div class="tap-target-content">
+    <h5>Welcome</h5>
+    <p>Selamat datang di website official Cleone.ID, komunitas daring Indonesia berbasis Discord.</p>
+  </div>
+</div>
+
+<main style="padding-bottom: 50px;">
+  <div class="section no-pad-bot" style="padding-top: 100px;" >
+    <div class="container blog-posts">
+      <div class="row">
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="assets/image/banner.webp">
+<!--              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i>-->
+<!--              </a>-->
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Game Cleone.ID</span>
+              <p class="center">Kumpulan game seru, Gaskan jajal game nya guys</p>
+            </div>
+            <div class="card-action center">
+              <a href="https://discord.com/invite/bX3hemMD" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">exit_to_app</i>Gabung ke Discord!</a>
+            </div>
+          </div>
+        </div>
+        <!-- GAME SECTION -->
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/2048/2048.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">2048</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/2048/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/9007199254740992/logo-4.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Advance 2048</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/9007199254740992/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/a-small-world-cup/a-small-world-cup.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">A Small World Cup</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/a-small-world-cup/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/ages-of-conflict/splash.jpg">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Age of Conflict</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/ages-of-conflict/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/among-us/red.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Among Us</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/among-us/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/baldis-basics/baldis-basics.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Baldis Basics</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/baldis-basics/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/ball-sort-puzzle/thumb.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Ball Sort Puzzle</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/ball-sort-puzzle/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/basket-and-ball/thumb.jpg">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Basket and Ball</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/basket-and-ball/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/basket-random/basket-random.jpeg">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Basket Random</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/basket-random/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/block-the-pig/thumb.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Block The Pig</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/block-the-pig/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/boxing-random/unnamed.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Boxing Random</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/boxing-random/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/ctr-time-travel/thumb.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Cut The Rope Time Travel</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/ctr-time-travel/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/flappy-bird/assets/thumb.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Flappy Bird</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/flappy-bird/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/fruit-ninja/thumb.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Fruit Ninja</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/fruit-ninja/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/geodash/geoscratchicon.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Geometri Dash</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/geodash/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/google-snake/google-snake.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Google Snake</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/google-snake/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/mario/Theme/Mario.jpg">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Super Mario</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/mario/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/moto-x3m/moto-x3m.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Moto X3M</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/moto-x3m/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/pacman/thumbnail.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Pac Man</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/pacman/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/papery-planes/thumb.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Papery Planes</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/papery-planes/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/soccer-random/unnamed.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Soccer Random</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/soccer-random/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/subway-surfers-san-francisco/img/splash.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Subway Surfers San Francisco</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/subway-surfers-san-francisco/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-image">
+              <img src="game/volley-random/unnamed.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title center">Volley Random</span>
+            </div>
+            <div class="card-action center">
+              <a href="./game/volley-random/index.html" target="_blank" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">play_arrow</i>Play</a>
+            </div>
+          </div>
+        </div>
+        
+<!-- END GAME SECTION -->
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-content" style="padding: 0 0 0 0 !important;">
+              <iframe src="https://discord.com/widget?id=855771197438427146&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6 xl4">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title center">Saran dan Masukan</span>
+              <p>Sampaikan saran dan masukan anda disini, untuk Cleone.ID lebih baik lagi.</p>
+            </div>
+            <div class="card-action center">
+              <a id="submit-masukan" class="waves-effect waves-light btn amber accent-3" style="color:#000000"><i class="material-icons left">send</i> Kirim Saran</a>
+            </div>
+          </div>
+<!--          <div class="card">-->
+<!--            <span class="card-title center">Saran & Masukan</span>-->
+<!--            <div class="card-content">-->
+<!--              <form-->
+<!--                      method="POST"-->
+<!--                      action="https://script.google.com/macros/s/AKfycbwvd_RWjtAi8zr1Pugf-hzMpQ5JTOC4C_pvW_zhuUL7AeRo8zFym1c0klDVMCw7VOs1/exec"-->
+<!--              >-->
+<!--                <input name="Email" type="email" placeholder="Email" required>-->
+<!--                <input name="Discord" type="text" placeholder="Discord" required>-->
+<!--                <input name="Nama" type="text" placeholder="Nama" required>-->
+<!--                <input name="Saran" type="text" placeholder="Saran" required>-->
+<!--                <button type="submit">Send</button>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+      </div>
+<!--      <div class="slider fullscreen">-->
+<!--        <ul class="slides">-->
+<!--          <li>-->
+<!--            <img src="assets/image/banner.webp" alt="Banner">-->
+<!--            <div class="caption center-align"-->
+<!--                 style="top: 70%; opacity: 0; transform: translateY(-100px) translateX(0px);">-->
+<!--              <a href="https://discord.gg/cleone" target="_blank"-->
+<!--                 class="btn waves-effect waves-light amber lighten-2 black-text">Join Our Community-->
+<!--                <i class="material-icons right">send</i>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+    </div>
+  </div>
+</main>
+
+<footer class="page-footer z-depth-6 grey darken-3">
+  <div class="container">
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="center-align">© 2024 Made with Materialize & Cleone ID Team</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TFK9146KD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TFK9146KD');
+</script>
+<script>
+  $('#submit-masukan').on('click', function (){
+    Swal.fire({
+      title: "Saran dan Masukan",
+      html: `
+        <div class="row">
+          <div class="input-field col l12 m12 s12">
+            <i class="material-icons prefix">email</i>
+            <input id="icon_email" type="email" id="email" class="validate" style="color: #EAEAEA">
+            <label for="icon_email">Email</label>
+          </div>
+          <div class="input-field col l12 m12 s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="icon_nama" type="text" id="nama" class="validate" style="color: #EAEAEA">
+            <label for="icon_nama">Nama</label>
+          </div>
+          <div class="input-field col l12 m12 s12">
+            <i class="material-icons prefix">chat</i>
+            <input id="icon_discord" type="text" class="validate" style="color: #EAEAEA">
+            <label for="icon_discord">Discord</label>
+          </div>
+          <div class="input-field col l12 m12 s12">
+            <i class="material-icons prefix">chrome_reader_mode</i>
+            <textarea id="icon_saran" class="materialize-textarea" style="color: #EAEAEA"></textarea>
+            <label for="icon_saran">Saran/Masukan</label>
+          </div>
+        </div>
+    `,
+      focusConfirm: false, // Prevent autofocus on confirm button
+      showCancelButton: true,
+      confirmButtonText: "Kirim",
+      confirmButtonColor: "#ffc400",
+      cancelButtonText: "Batal",
+      showLoaderOnConfirm: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      preConfirm: async () => {
+        const Email = document.getElementById("icon_email").value;
+        const Nama = document.getElementById("icon_nama").value;
+        const Discord = document.getElementById("icon_discord").value;
+        const Saran = document.getElementById("icon_saran").value;
+
+        // Validate inputs
+        if (!Email || !Nama || !Discord || !Saran) {
+          Swal.showValidationMessage("Mohon lengkapi semua isian!");
+          return;
+        }
+
+        try {
+          const verifUrl = "https://script.google.com/macros/s/AKfycbwvd_RWjtAi8zr1Pugf-hzMpQ5JTOC4C_pvW_zhuUL7AeRo8zFym1c0klDVMCw7VOs1/exec";
+          const response = await fetch(verifUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({ Email, Nama, Discord, Saran }).toString(),
+          });
+
+          if (!response.ok) {
+            return Swal.showValidationMessage(`${JSON.stringify(await response.json())}`);
+          }
+
+          return response.json();
+        } catch (error) {
+          Swal.showValidationMessage(`Request failed: ${error}`);
+        }
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if(result.value.result == "success"){
+          Swal.fire({
+            title: "Berhasil!",
+            text: "Saran dan Masukan anda sudah terkirim, terima kasih",
+            icon: "success",
+            allowOutsideClick: false,
+            allowEscapeKey: false
+          });
+        }
+      }
+    });
+
+  });
+
+  $(document).ready(function(){
+    $('.slider').slider();
+    $(".preloader").fadeOut(3000);
+    $('.tooltipped').tooltip();
+
+    $('.row').masonry({
+      itemSelector: '.col', // Target each grid item
+      columnWidth: '.col',  // Set the column width based on item size
+      percentPosition: true // Enable percentage-based positioning
+    });
+
+    $('.card').hover(
+      function () {
+        // Mouse enter animation
+        gsap.to(this, { scale: 1.1, duration: 0.3, ease: "power1.out" });
+      },
+      function () {
+        // Mouse leave animation
+        gsap.to(this, { scale: 1, duration: 0.3, ease: "power1.out" });
+      }
+    );
+  });
+</script>
+</body>
+</html>
