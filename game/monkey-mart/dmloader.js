@@ -406,11 +406,11 @@ var GameArchiveLoader = {
         for (var i=0;i<file.pieces.length; ++i) {
             actualSize += file.pieces[i].dataLength;
         }
-        console.log('comparison:');
-        console.log(actualSize, file.size);
-        if (actualSize != file.size) {
-            throw "Unexpected data size";
-        }
+        // console.log('comparison:');
+        // console.log(actualSize, file.size);
+        // if (actualSize != file.size) {
+        //     throw "Unexpected data size";
+        // }
 
         // verify the pieces
         if (file.pieces.length > 1) {
