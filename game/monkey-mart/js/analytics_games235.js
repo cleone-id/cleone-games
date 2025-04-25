@@ -14,10 +14,14 @@ function loadGoogleAnalytics(id) {
 
 window.addEventListener("load", (event) => {
   if (navigator.webdriver) {
-    loadGoogleAnalytics("G-9TFK9146KD");
+    loadGoogleAnalytics("G-LE1ZGTPC77");
     console.log('Bot Browser', event);
   } else {
-    loadGoogleAnalytics("G-9TFK9146KD");
+    if (window.location.href.indexOf(".games235.com")> -1) {
+        loadGoogleAnalytics("G-9TFK9146KD");
+    } else {
+        loadGoogleAnalytics("G-9TFK9146KD");
+    }
     console.log('Human Browser', event);
   }
 });
